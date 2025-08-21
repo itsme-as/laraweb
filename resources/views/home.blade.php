@@ -122,7 +122,16 @@
     <!-- Join section start -->
     <section id="join-us" class="min-h-screen items-center pt-32 pb-16 px-5 justify-center">
         <h1 class="text-center font-extrabold text-2xl mb-3 md:mb-10 md:text-3xl">Join us!</h1>
-        <div class="container bg-(--secondary-color) rounded-xl w-full h-20 text-center items-center content-center md:h-40 md:w-1/2 md:justify-self-center md:rounded-3xl"><h2 class="md:text-3xl">Rp700.000,-</h2></div>
+        <div class="container items-center justify-between flex flex-col md:flex-row gap-3 ">
+            @foreach($bundles as $bundle)
+            <div class="container py-4 px-3 bg-(--secondary-color) rounded-xl w-full h-fit text-center items-center content-center md:h-fit md:w-1/2 md:justify-self-center md:rounded-3xl">
+                <h2 class="underline font-bold text-xl md:text-3xl">{{ $bundle->title }}</h2>
+                <p class="py-2 md:text-xl">{{ $bundle->description }}</p>
+                <p class="text-sm line-through">{{ $bundle->normal_price }}</p>
+                <p class="text-lg font-bold md:text-3xl">{{ $bundle->selling_price }}</p>
+            </div>
+            @endforeach
+        </div>
 
         <div class="container bg-(--secondary-color) py-10 w-full mt-5 justify-center">
             <form onsubmit="joinFunction(event)" class="flex flex-col px-2 py-2 justify-center">
