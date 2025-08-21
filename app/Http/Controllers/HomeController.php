@@ -9,6 +9,7 @@ class HomeController extends Controller
     public function index()
     {
         $bundles = Bundle::all();
+        
         return view('home', compact('bundles'));
     }
 }

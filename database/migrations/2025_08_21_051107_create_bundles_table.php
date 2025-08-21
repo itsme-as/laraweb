@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('normal_price');
             $table->string('selling_price');
+            $table->timestamps(); // This will create 'created_at' and 'updated_at' columns
         });
     }
 

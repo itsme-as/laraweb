@@ -16,7 +16,5 @@ class Bundle extends Model
         'description',
         'normal_price',
         'selling_price',
-        'created_at',
-        'updated_at'
     ];
 }
