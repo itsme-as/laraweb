@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::resource('/home', HomeController::class);
 
 route::get('/main', function () {
     return view('main');

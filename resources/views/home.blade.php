@@ -124,9 +124,9 @@
         <h1 class="text-center font-extrabold text-2xl mb-3 md:mb-10 md:text-3xl">Join us!</h1>
         <div class="container items-center justify-between flex flex-col md:flex-row gap-3 ">
             @foreach($bundles as $bundle)
-            <div class="container py-4 px-3 bg-(--secondary-color) rounded-xl w-full h-fit text-center items-center content-center md:h-fit md:w-1/2 md:justify-self-center md:rounded-3xl">
+            <div class="container py-4 px-3 bg-(--secondary-color) rounded-xl w-full min-h-80 max-h-fit text-center items-center content-center md:h-fit md:w-1/2 md:justify-self-center md:rounded-3xl">
                 <h2 class="underline font-bold text-xl md:text-3xl">{{ $bundle->title }}</h2>
-                <p class="py-2 md:text-xl">{{ $bundle->description }}</p>
+                <p class="py-2 min-h-35 md:text-xl">{{ $bundle->description }}</p>
                 <p class="text-sm line-through">{{ $bundle->normal_price }}</p>
                 <p class="text-lg font-bold md:text-3xl">{{ $bundle->selling_price }}</p>
             </div>
@@ -134,28 +134,48 @@
         </div>
 
         <div class="container bg-(--secondary-color) py-10 w-full mt-5 justify-center">
-            <form onsubmit="joinFunction(event)" class="flex flex-col px-2 py-2 justify-center">
+            <form action="{{ route('home.store') }}" method="POST"  class="flex flex-col px-2 py-2 justify-center">
+                @csrf
                 <fieldset class="w-full gap-3 border-2 border-(--primary-color) justify-center px-2 py-2 md:w-1/2 self-center">
                     <legend class="text-center text-lg md:text-2xl">Join us now!</legend>
                     <div class="md:flex flex-row justify-center ">
                         <div class="md:w-1/3 flex-col md:mx-4 ">
-                            <input id="name" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="text" placeholder="Your name">
-                            <input id="email" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="email" placeholder="Your email">
+                            <input name="name" id="name" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="text" placeholder="Your name">
+                            <input name="email" id="email" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="email" placeholder="Your email">
                         </div>
                         <div class="md:w-1/3 flex-col md:mx-4">
-                            <input id="phone" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="tel" pattern="[0-9]{12}" placeholder="Your phone number">
-                            <input id="address" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="text" placeholder="Your address">
+                            <input name="phone" id="phone" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="tel" pattern="[0-9]{12}" placeholder="Your phone number">
+                            <input name="address" id="address" class=" rounded-lg pl-3 my-2 w-full bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50 " type="text" placeholder="Your address">
                         </div>
                     </div>
-                    <button onclick="joinFunction()" class="bg-(--primary-color) w-full my-3 rounded-lg h-[40px] justify-self-center font-extrabold text-(--background-color) text-xl md:text-2xl md:w-7/10 md:mx-10 md:flex md:text-center md:justify-center md:items-center cursor-pointer">JOIN</button>
+                    <div class="md:flex flex-row justify-center ">
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="TheoryOnly"> Theory Only
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="TWQ"> Theory with Question Bank
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="PracticeOnly"> Practice Only
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="FullBundle"> Full Bundle
+                    </div>
+                    <button type="submit" class="bg-(--primary-color) w-full my-3 rounded-lg h-[40px] justify-self-center font-extrabold text-(--background-color) text-xl md:text-2xl md:w-7/10 md:mx-10 md:flex md:text-center md:justify-center md:items-center cursor-pointer">JOIN</button>
                 </fieldset>
             </form>
         </div>
     </section>
      <!-- Join section end -->
     
+
+    <section class="min-h-screen items-center pt-32 pb-16 px-5 justify-center">
+        <h1 class="text-center font-extrabold text-2xl mb-3 md:mb-10 md:text-3xl">Our Member</h1>
+        <div class="flex flex-col md:flex-row md:gap-5">
+            @foreach ($members as $member)
+            <div class="container bg-(--secondary-color) py-10 w-full mt-5 justify-center text-center rounded-xl md:w-1/3 md:mx-auto">
+                <p class="text-base md:text-xl font-bold">{{ $member->name }}</p>
+                <p class="text-sm md:text-base italic">Class: {{ $member->class }} </p>
+            </div>
+            @endforeach
+        </div>
+    </section>
+
     <!-- Popup after join -->
-    <div id="popup-join" onclick="closeJoinFunction()" style="display: none; position: fixed; top: 0; left:0; z-index: 299; " class="container flex w-full min-h-screen bg-zinc-600 items-center md:justify-center">
+    <div onclick="closeJoinFunction()" style="display: none; position: fixed; top: 0; left:0; z-index: 299; " class="container flex w-full min-h-screen bg-zinc-600 items-center md:justify-center">
         <div class="container opacity-100 py-10 px-5 text-white bg-(--primary-color) items-center justify-center scale-80 rounded-xl md:w-1/3 md:flex-col md:justify-self-center md:px-16">
             <h1 class="text-center text-white text-2xl my-3">Welcome to the club brother!</h1>
             <div class="flex-col text-lg">
@@ -198,3 +218,7 @@
     
 </body>
 </html>
+
+<!-- onclick="joinFunction()" -->
+<!-- id="popup-join" -->
+<!-- onsubmit="joinFunction(event)" -->
