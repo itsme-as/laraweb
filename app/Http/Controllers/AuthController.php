@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Member;
+use App\Models\Member;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Session;
 // use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,7 @@ class AuthController extends Controller
             'phone' => 'required',
         ]); 
 
-        $member = \App\Models\Member::where('email', $credentials['email'])
+        $member = Member::where('email', $credentials['email'])
             ->where('phone', $credentials['phone'])
             ->first();
 
