@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bundle;
 use App\Models\Member;
+// use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

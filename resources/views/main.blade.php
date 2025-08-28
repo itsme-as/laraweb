@@ -17,23 +17,6 @@
     </style>
 </head>
 <body onscroll="scrollPercentage()" class="items-center w-full">
-    <!-- Section login -->
-    <div id="popup-acc" style="display: flex; position: fixed; top: 0; left:0; z-index: 299; " class="items-center justify-center container flex w-full min-h-screen bg-zinc-800 items-center md:justify-center">
-        <div class="container flex flex-col items-center justify-center w-full h-full bg-(--primary-color) rounded-lg p-5 md:w-1/2 md:h-3/4">
-            <h1 class="text-xl text-(--background-color) font-extrabold text-center my-2 md:text-3xl md:my-6">Type your registered account here</h1>
-            <div class="flex flex-col items-center justify-center w-full h-full rounded-lg">
-                <form onsubmit="accFunction(event)">
-                    <fieldset class="flex flex-col w-full items-center justify-center border-3 border-(--background-color) rounded-lg px-10 py-2 md:w-7/10 md:h-3/4">
-                        <legend class="text-center text-(--background-color) text-xl md:text-2xl my-2 px-3 font-bold">Login</legend>
-                        <input id="emailAcc" class="rounded-lg w-[300px] pl-3 my-2 bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50" type="email" placeholder="Type your registered email" required>
-                        <input id="phoneAcc" class="rounded-lg w-[300px] pl-3 my-2 bg-(--background-color) border-b-2 border-(--primary-color) placeholder:text-(--primary-color) placeholder:opacity-50" type="tel" placeholder="Type your registered phone number" required>
-                        <button class="bg-(--background-color) w-full md:w-[300px] my-3 rounded-lg h-[40px] font-extrabold text-(--primary-color) text-xl border-2 border-(--background-color) hover:bg-(--primary-color) hover:text-(--background-color) md:text-2xl md:w-7/10 md:mx-10 md:flex md:text-center md:justify-center md:items-center cursor-pointer">LOGIN</button>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!--Header start> -->
     <section id="navbar" class="fixed sticky top-0 left-0 bg-transparent backdrop-blur-md md:bg-transparent md:backdrop-blur-md z-99 min-h-[20px] border-b-1 border-slate-400 " onscroll="navFunction()">
         <nav class="absolute sticky top-0 left-0" >
@@ -48,6 +31,9 @@
                     <a class="w-[120px] rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="#theory"><li >Theory</li></a>
                     <a class="w-[120px] rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="#question-bank"><li >Question Bank</li></a>
                     <a class="w-[120px] rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="#practice"><li >Practice</li></a>
+                    <a class="font-bold flex flex-row justify-center gap-3 min-w-[260px] px-2 rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="/account"><li>{{ $member_name ?? 'Guest'}}</li>
+                    <svg class="w-5" fill="#116779"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z"/></svg>
+                    </a>
                 </ul>
             </div>
 
@@ -59,11 +45,14 @@
             </div>
 
 
-            <div id="mobile-nav" class="hidden absolute right-0 top-14.5 float-right z-199 bg-(--primary-color) w-[240px] h-[150px] rounded-b-xl pl-6 py-5 md:hidden transition-all duration-300">
+            <div id="mobile-nav" class="hidden absolute right-0 top-14.5 float-right z-199 bg-(--primary-color) w-[240px] h-[200px] rounded-b-xl pl-6 py-5 md:hidden transition-all duration-300">
                 <ul class="flex flex-col gap-3">
                     <a href="#theory" class="bg-(--secondary-color) px-4 border-1 rounded-xl w-[200px] hover:bg-white hover:text-(--primary-color)"><li>Theory</li></a>
                     <a href="#question-bank" class="bg-(--secondary-color) px-4 border-1 rounded-xl w-[200px] hover:bg-white hover:text-(--primary-color)"><li>Question Bank</li></a>
                     <a href="#practice" class="bg-(--secondary-color) px-4 border-1 rounded-xl w-[200px] hover:bg-white hover:text-(--primary-color)"><li>Practice</li></a>
+                    <a href="/account" class="flex flex-row gap-2 bg-(--secondary-color) text-sm font-bold px-4 border-1 rounded-xl w-[200px] hover:bg-white hover:text-(--primary-color)"><li>{{ $member_name ?? 'Guest' }}</li>
+                    <svg class="w-5" fill="#116779"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z"/></svg>
+                    </a>
                 </ul>
             </div>
 
@@ -71,6 +60,15 @@
         </nav>
     </section>
     <!-- Header end -->
+
+
+    <section class="container flex min-h-[180px] justify-center text-center items-center md:min-h-[240px] w-full">
+        <div class="items-center justify-center w-full h-full">
+            <h1 class="mb-5 text-3xl font-extrabold text-(--primary-color) md:text-5xl"> Hello <span class="font-black underline text-slate-900 shadow-2-(--primary-color) ">{{ $member_name ?? 'Guest'}} !</span> </h1>
+            <p>Welcome to our Math E-Learning!</p>
+            <p>Keep your minds on and keep spirit to studying a math</p>
+        </div>
+    </section>
 
     <!-- Theory section -->
     <section id="theory" class="px-12 pt-16 pb-8 bg-(--background-color) md:items-center justify-center w-full min-h-screen h-full bg-(--background-color)">
@@ -192,5 +190,22 @@
             <img src="assets/logo.png" class="flex -mr-10 md:mr-20 md:scale-160 w-[300px] h-[300px] mx-auto my-5" alt="logo">
         </div>
     </Section>
+
+    @section('container')
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>  
+            @endif
+            
+            
+        </div>
+    </div>
+    
+    @endsection
 </body>
 </html>

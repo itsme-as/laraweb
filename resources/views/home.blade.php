@@ -33,7 +33,7 @@
                     <a class="w-[90px] rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="#programs"><li >Programs</li></a>
                     <a class="w-[90px] rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="#join-us"><li >Join Us!</li></a>
                     <a class="w-[90px] rounded-xl border-2 border-(--primary-color) text-center text-(--primary-color) mx-2 hover:bg-(--primary-color) hover:text-(--background-color) cursor-pointer" href="#about"><li >About</li></a>  
-                    <a href="/main" class="w-[200px] rounded-xl border-2 border-black-900 bg-(--primary-color) text-center text-(--background-color) mx-2 hover:bg-(--background-color) hover:text-(--primary-color) cursor-pointer">Have an account?</a>
+                    <a href="/login" class="w-[200px] rounded-xl border-2 border-black-900 bg-(--primary-color) text-center text-(--background-color) mx-2 hover:bg-(--background-color) hover:text-(--primary-color) cursor-pointer">Have an account?</a>
                 </ul>
             </div>
 
@@ -149,10 +149,10 @@
                         </div>
                     </div>
                     <div class="md:flex flex-row justify-center ">
-                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="TheoryOnly"> Theory Only
-                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="TWQ"> Theory with Question Bank
-                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="PracticeOnly"> Practice Only
-                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="FullBundle"> Full Bundle
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="Theory Only"> Theory Only
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="Theory with Question Bank"> Theory with Question Bank
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="Practice Only"> Practice Only
+                        <input id="class" class="mx-4 font-bold text-base" type="radio" name="class" value="Full Bundle"> Full Bundle
                     </div>
                     <button type="submit" class="bg-(--primary-color) w-full my-3 rounded-lg h-[40px] justify-self-center font-extrabold text-(--background-color) text-xl md:text-2xl md:w-7/10 md:mx-10 md:flex md:text-center md:justify-center md:items-center cursor-pointer">JOIN</button>
                 </fieldset>
@@ -213,6 +213,23 @@
             </svg>
         </div>
     </section>
+
+    @section('container')
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+
+            
+            @if(session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('loginError') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>  
+            @endif
+            
+        </div>
+    </div>
+    
+    @endsection
     <!-- About section end -->
 
     
